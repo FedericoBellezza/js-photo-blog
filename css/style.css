@@ -21,3 +21,12 @@ img {
 	top: -2%;
 	transform: translate(-50%, 0);
 }
+
+.overlay {
+	background-color: rgba(0, 0, 0, 0.5);
+	width: 100vw;
+	height: 150vh;
+	position: fixed;
+	padding: 10%;
+	z-index: 1;
+}

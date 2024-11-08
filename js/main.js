@@ -16,7 +16,7 @@ fetch('https://jsonplaceholder.typicode.com/photos?_limit=6')
 		data.forEach((element) => {
 			cardContainer.innerHTML += `
             <div class="col-12 col-md-6 col-lg-4 g-4">
-						<div class="card rounded-0 h-100  p-3">
+						<div class="card h-100  p-3">
 							<img class="pin" src="./img/pin.svg" alt="" />
 							<img class="main-image rounded" src=${element.url} alt="${element.title}" />
 							<div class="card-subtitle my-3 h3">${element.title}</div>

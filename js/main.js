@@ -1,18 +1,3 @@
-// - Milestone 1
-// Sfruttando gli screen e gli asset in allegato riproduciamo la grafica proposta in maniera statica: utilizzando soltanto HTML e CSS e riproducendo una singola fotografia (usiamo una qualunque immagine a piacimento)
-
-// - Milestone 2
-// Utilizzando Postman, testiamo una chiamata all’endpoint di JSON Placeholder:
-// https://jsonplaceholder.typicode.com/photos?_limit=6
-// Studiamo bene la risposta e i dati che ci fornisce iniziando a pensare a come poterli sfruttare.
-
-// - Milestone 3
-// Inseriamo un foglio JavaScript ed effettuiamo una chiamata AJAX all’API di JSON Placeholder, sfruttando la risposta per generare dinamicamente in pagina una serie di foto!
-
-// - Bonus
-// rendi la pagina responsive, in modo che su mobile e tablet le foto si dispongano man mano una sotto l’altra ed il titolo abbia una dimensione adeguata
-// Buon Lavoro
-
 const photos = [];
 const cardContainer = document.querySelector('.card-container');
 
@@ -23,7 +8,7 @@ function displayOverlay() {
 	overlay.innerHTML = '';
 }
 
-// - Faccio una richiesta all'API per avere 6 foto (con ID, URL e TITLE)
+// - Faccio una richiesta all'API per avere 6 foto (con URL e TITLE)
 fetch('https://jsonplaceholder.typicode.com/photos?_limit=6')
 	.then((response) => response.json())
 	.then((data) => {
@@ -31,7 +16,7 @@ fetch('https://jsonplaceholder.typicode.com/photos?_limit=6')
 		data.forEach((element) => {
 			cardContainer.innerHTML += `
             <div class="col-12 col-md-6 col-lg-4 g-4">
-						<div class="card h-100  p-3">
+						<div class="card rounded-0 h-100  p-3">
 							<img class="pin" src="./img/pin.svg" alt="" />
 							<img class="main-image rounded" src=${element.url} alt="${element.title}" />
 							<div class="card-subtitle my-3 h3">${element.title}</div>
@@ -39,12 +24,16 @@ fetch('https://jsonplaceholder.typicode.com/photos?_limit=6')
 					</div>
             `;
 
+			// - Prendo le carte generate e gli do un eventListener (click)
 			const cards = document.querySelectorAll('.card');
 			cards.forEach((card) => {
 				card.addEventListener('click', function () {
-					const mainImage = this.querySelector('.main-image');
-					console.log(mainImage);
+					// - Prendo il nodo dell'immagine cliccata tramite
+					const mainImage = card.querySelector('.main-image');
+
 					displayOverlay();
+
+					// - Creo un bottone, un immagine e un sottotitolo all'interno dell'overlay
 					const overlay = document.getElementById('overlay');
 					overlay.innerHTML = `
 					<button class="btn btn-primary">Chiudi</button>
@@ -52,6 +41,7 @@ fetch('https://jsonplaceholder.typicode.com/photos?_limit=6')
 					<div class="container card-subtitle my-3 h5 text-light">${mainImage.alt}</div>
 					`;
 
+					// - Al click del pulsante "chiudi" l'overlay torna a "display none"
 					const closeButton = document.querySelector('.overlay .btn');
 					closeButton.addEventListener('click', displayOverlay);
 				});

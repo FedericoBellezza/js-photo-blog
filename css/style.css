@@ -14,10 +14,7 @@ h1 {
 	border-block: 5px solid rgb(86, 62, 0);
 }
 
-img {
-	max-width: 100%;
-}
-
+/* * Pin */
 .pin {
 	position: absolute;
 	left: 50%;
@@ -25,9 +22,14 @@ img {
 	transform: translate(-50%, 0);
 	transition: all 0.2s;
 }
+.card:hover .pin {
+	transform: scale(0.0005);
+	transform: translate(0, -100vh);
+}
 
-.overlay {
-	background-color: rgba(0, 0, 0, 0.5);
+/* * Overlay */
+#overlay {
+	background-color: rgba(0, 0, 0, 0.7);
 	width: 100vw;
 	height: 150vh;
 	position: fixed;
@@ -37,21 +39,17 @@ img {
 	transform: translate(0, -50px);
 }
 
-.overlay img {
+#overlay img {
 	width: 600px;
 	margin: 0 auto;
 }
 
+/* * Card */
 .card:hover {
 	transform: rotate(10deg) scale(1.1);
 	z-index: 1;
 	box-shadow: 10px 10px 50px rgb(44, 44, 44);
 	cursor: pointer;
-}
-
-.card:hover .pin {
-	transform: scale(0.0005);
-	transform: translate(0, -100vh);
 }
 
 .card {
